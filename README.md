@@ -1,4 +1,4 @@
-# NQueens-Heuristics (Solucionador das N-Rainhas)
+# Heuristic-NQueens-Solver
 
 Este projeto é porpõe solucionar o problema de computação das **N-Rainhas**, com ma implementação em C++. O objetivo é comparar diferentes meta-heurísticaspara encontrar uma solução onde nenhuma rainha possa atacar a outra em um tabuleiro N x N.
 
