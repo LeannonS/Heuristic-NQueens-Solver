@@ -14,12 +14,14 @@ int main()
 {
     srand(time(0));
 
-    const int N = 8; // Número de rainhas no tabuleiro NxN
-    const int MAX_STEPS = 50000; // Número máximo de iterações
+    const int N = 1000; // Número de rainhas no tabuleiro NxN
+    const int MAX_STEPS = 5000; // Número máximo de iterações
 
     Menu menu;
     Construcao construtor;
     Utils utils;
+
+    clock_t inicio_CPU, fim_CPU;
 
     vector<int> solucao_inicial;
     bool executando = true;
@@ -55,9 +57,14 @@ int main()
                 else
                 {
                     MinConflicts MC(solucao_inicial, MAX_STEPS);
-                    vector<int> solucao = MC.SolucaoMinConflicts();
 
-                    if (!solucao.empty()) utils.print_tabuleiro(solucao);
+                    inicio_CPU = clock();
+                    vector<int> solucao = MC.SolucaoMinConflicts();
+                    fim_CPU = clock();
+
+                    printf("Tempo execucao = %10.2f segundos\n",(float)(fim_CPU - inicio_CPU)/CLOCKS_PER_SEC);
+
+                    if(N < 100) if (!solucao.empty()) utils.print_tabuleiro(solucao);
                 }
 
                 break;
@@ -72,9 +79,14 @@ int main()
                 else
                 {
                     HillClimbing HC(solucao_inicial, MAX_STEPS);
-                    vector<int> solucao = HC.SolucaoHillClimbing();
 
-                    if (!solucao.empty()) utils.print_tabuleiro(solucao);
+                    inicio_CPU = clock();
+                    vector<int> solucao = HC.SolucaoHillClimbing();
+                    fim_CPU = clock();
+
+                    printf("Tempo execucao = %10.2f segundos\n",(float)(fim_CPU - inicio_CPU)/CLOCKS_PER_SEC);
+
+                    if(N < 100) if (!solucao.empty()) utils.print_tabuleiro(solucao);
                 }
                 break;
             }
